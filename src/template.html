@@ -2,23 +2,302 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Weather App</title>
+
 </head>
 
 <body>
-    <form class="user-input-form">
-        <label for="city">
-            Enter City Name:
-            <input type="search" id="city">
-        </label>
-        <button type="submit">Show Weather</button>
-    </form>
 
-    <div class="fetched-details">
+    <main class="weather-app">
 
-    </div>
+        <!-- SEARCH -->
+
+        <section class="search-section">
+
+            <form class="user-input-form">
+
+                <input type="search" id="city" placeholder="Search city..." autocomplete="off">
+
+                <button type="submit">
+                    Search
+                </button>
+
+            </form>
+
+        </section>
+
+        <!-- CURRENT WEATHER -->
+
+        <section class="current-weather">
+
+            <div class="top-weather">
+
+                <div class="left-weather">
+
+                    <div class="main-weather-info">
+
+                        <img class="weather-icon" src="https://cdn-icons-png.flaticon.com/512/1779/1779940.png"
+                            alt="Weather Icon">
+
+                        <div>
+
+                            <div class="temperature-row">
+
+                                <h1 class="temperature">
+                                    37°
+                                </h1>
+
+                                <span class="unit">
+                                    C
+                                </span>
+
+                            </div>
+
+                            <p class="condition">
+                                Scattered thunderstorms
+                            </p>
+
+                        </div>
+
+                    </div>
+
+                    <div class="extra-info">
+
+                        <p>
+                            Precipitation:
+                            <span class="precipitation">
+                                5%
+                            </span>
+                        </p>
+
+                        <p>
+                            Humidity:
+                            <span class="humidity">
+                                80%
+                            </span>
+                        </p>
+
+                        <p>
+                            Wind:
+                            <span class="wind-speed">
+                                19 km/h
+                            </span>
+                        </p>
+
+                    </div>
+
+                </div>
+
+                <div class="right-weather">
+
+                    <h2 class="city-name">
+                        Kolkata
+                    </h2>
+
+                    <p class="date-time">
+                        Saturday 4:20 PM
+                    </p>
+
+                </div>
+
+            </div>
+
+        </section>
+
+        <!-- AIR CONDITIONS -->
+
+        <section class="details-section">
+
+            <div class="detail-box">
+
+                <p class="detail-title">
+                    Feels Like
+                </p>
+
+                <h3 class="feels-like">
+                    41°
+                </h3>
+
+            </div>
+
+            <div class="detail-box">
+
+                <p class="detail-title">
+                    UV Index
+                </p>
+
+                <h3 class="uv-index">
+                    6
+                </h3>
+
+            </div>
+
+            <div class="detail-box">
+
+                <p class="detail-title">
+                    Visibility
+                </p>
+
+                <h3 class="visibility">
+                    8 km
+                </h3>
+
+            </div>
+
+            <div class="detail-box">
+
+                <p class="detail-title">
+                    Pressure
+                </p>
+
+                <h3 class="pressure">
+                    1012 hPa
+                </h3>
+
+            </div>
+
+        </section>
+
+        <!-- HOURLY FORECAST -->
+
+        <section class="forecast-section">
+
+            <h3 class="section-title">
+                Hourly Forecast
+            </h3>
+
+            <div class="hourly-container">
+
+                <div class="hour-card">
+                    <p>10 PM</p>
+                    <img src="https://cdn-icons-png.flaticon.com/512/869/869869.png">
+                    <p>30°</p>
+                </div>
+
+                <div class="hour-card">
+                    <p>1 AM</p>
+                    <img src="https://cdn-icons-png.flaticon.com/512/869/869869.png">
+                    <p>29°</p>
+                </div>
+
+                <div class="hour-card">
+                    <p>4 AM</p>
+                    <img src="https://cdn-icons-png.flaticon.com/512/869/869869.png">
+                    <p>29°</p>
+                </div>
+
+                <div class="hour-card">
+                    <p>7 AM</p>
+                    <img src="https://cdn-icons-png.flaticon.com/512/869/869869.png">
+                    <p>30°</p>
+                </div>
+
+                <div class="hour-card">
+                    <p>10 AM</p>
+                    <img src="https://cdn-icons-png.flaticon.com/512/869/869869.png">
+                    <p>34°</p>
+                </div>
+
+                <div class="hour-card">
+                    <p>1 PM</p>
+                    <img src="https://cdn-icons-png.flaticon.com/512/869/869869.png">
+                    <p>37°</p>
+                </div>
+
+            </div>
+
+        </section>
+
+        <!-- WEEKLY FORECAST -->
+
+        <section class="forecast-section">
+
+            <h3 class="section-title">
+                7-Day Forecast
+            </h3>
+
+            <div class="weekly-container">
+
+                <div class="week-card">
+
+                    <div class="week-left">
+                        <p>Sunday</p>
+                    </div>
+
+                    <img src="https://cdn-icons-png.flaticon.com/512/869/869869.png">
+
+                    <div class="week-right">
+                        <p>37° / 29°</p>
+                    </div>
+
+                </div>
+
+                <div class="week-card">
+
+                    <div class="week-left">
+                        <p>Monday</p>
+                    </div>
+
+                    <img src="https://cdn-icons-png.flaticon.com/512/869/869869.png">
+
+                    <div class="week-right">
+                        <p>36° / 28°</p>
+                    </div>
+
+                </div>
+
+                <div class="week-card">
+
+                    <div class="week-left">
+                        <p>Tuesday</p>
+                    </div>
+
+                    <img src="https://cdn-icons-png.flaticon.com/512/869/869869.png">
+
+                    <div class="week-right">
+                        <p>38° / 30°</p>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+        <!-- SUNRISE / SUNSET -->
+
+        <section class="sun-section">
+
+            <div class="sun-box">
+
+                <p class="detail-title">
+                    Sunrise
+                </p>
+
+                <h3 class="sunrise">
+                    5:12 AM
+                </h3>
+
+            </div>
+
+            <div class="sun-box">
+
+                <p class="detail-title">
+                    Sunset
+                </p>
+
+                <h3 class="sunset">
+                    6:07 PM
+                </h3>
+
+            </div>
+
+        </section>
+
+    </main>
+
 </body>
 
 </html>
