@@ -1,47 +1,52 @@
 import "./style.css";
+import { getAQIData, getWeatherData } from "./api.js";
+import { renderCurrentWeather, renderAQI } from "./dom.js";
+import { renderForecast } from "./forecast.js";
+import { hideLoading, showLoading } from "./loading.js";
 
-const searchForm = document.querySelector(".user-input-form");
+const form = document.querySelector(".user-input-form");
+const cityInput = document.querySelector("#city");
+const weeklyContainer = document.querySelector(".weekly-container");
+
+let weatherData = null;
+
+form.addEventListener("submit", (e) => handleSearch(e));
+
+weeklyContainer.addEventListener("click", (e) => handleForecastClick(e));
 
 
-searchForm.addEventListener("submit", (e) => {
+
+async function handleSearch(e) {
     e.preventDefault();
 
-    const city = document.querySelector("#city");
-
-    getWeather(city.value.trim());
-});
-
-async function getWeather(cityName) {
+    const city = cityInput.value.trim();
+    if (!city) return;
+    
     try {
-        const myApi = "PVF9DMYCJFKQCHQXC64PXG5LJ";
-        const url = `https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline/${cityName}/?key=${myApi}`;
+        
+        showLoading();
+        weatherData = await getWeatherData(city);
+        const aqiData = await getAQIData( weatherData.latitude, weatherData.longitude);
 
-        const response = await fetch(url);
-        if (!response.ok) throw new Error("Respons not ok");
-        else console.log("OK")
+        renderAQI(aqiData);
+        renderDay(0);
 
-        const data = await response.json();
-        if (!data) console.log("Didn't get JSON");
-        else {
-            console.log("Got JSON");
-            showDetails(data);
-        }
+        hideLoading();
 
-    } catch (err) {
-        console.log(err);
+    } catch(err) {
+        console.error(err);
+        hideLoading();        
+        alert("Failed to fetch weather data");
     }
 }
 
-function showDetails(weatherData) {
-    console.log(weatherData);
-    console.log(fahrenheitToCelsius(weatherData.currentConditions.temp));
-    console.log(`Feels like ${fahrenheitToCelsius(weatherData.currentConditions.feelslike)}`);
-    console.log(`Humidity ${weatherData.currentConditions.humidity}%`);
-    console.log(`Wind Speed ${weatherData.currentConditions.windspeed} km/h`);
-
+function handleForecastClick(e) {
+    const card = e.target.closest(".week-card");
+    if (!card || !weatherData) return;
+    renderDay( Number(card.dataset.index));
 }
-function fahrenheitToCelsius(f) {
-    let c =  5 * (f - 32) / 9;
-    c = Math.round(c * 10) / 10;
-    return `${c}°C`;
+
+function renderDay(index) {
+    renderCurrentWeather(weatherData, index);
+    renderForecast(weatherData, index);
 }

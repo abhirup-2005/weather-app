@@ -175,7 +175,12 @@ body {
 
 .hour-card img {
     width: 40px;
+    height: 40px;
     margin: 10px 0;
+}
+
+.hour-card > p:last-child {
+    font-size: 0.9rem;
 }
 
 /* WEEKLY */
@@ -183,6 +188,7 @@ body {
 .weekly-container {
     display: flex;
     flex-direction: column;
+    gap: 10px;
 }
 
 .week-card {
@@ -190,13 +196,46 @@ body {
     justify-content: space-between;
     align-items: center;
 
-    padding: 14px 0;
+    padding: 16px 18px;
 
-    border-bottom: 1px solid rgba(255,255,255,0.05);
+    background: rgba(255,255,255,0.03);
+
+    border: 1px solid rgba(255,255,255,0.05);
+
+    border-radius: 16px;
+
+    cursor: pointer;
+
+    transition:
+        background 0.25s ease,
+        border-color 0.25s ease,
+        transform 0.2s ease;
+}
+
+.week-card:hover {
+
+    background: rgba(255,255,255,0.06);
+
+    border-color: rgba(255,255,255,0.12);
+
+    transform: translateY(-2px);
+}
+
+.week-card:active {
+    transform: scale(0.98);
+}
+
+.week-card > div {
+    min-width: 120px;
+}
+
+.week-right {
+    text-align: end;
 }
 
 .week-card img {
     width: 35px;
+    height: 25px;
 }
 
 /* DETAILS */
@@ -265,4 +304,49 @@ body {
         gap: 30px;
     }
 
+}
+
+/* =========================
+   LOADING
+========================= */
+
+body {
+    margin: 0;
+    font-family: sans-serif;
+}
+
+.loader {
+    position: fixed;
+    inset: 0;
+    background: #0f172a;
+    color: white;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    gap: 12px;
+    z-index: 1000;
+}
+
+.spinner {
+    width: 50px;
+    height: 50px;
+
+    border: 5px solid #334155;
+    border-top-color: #38bdf8;
+    border-radius: 50%;
+
+    animation: spin 1s linear infinite;
+}
+
+.hidden {
+    display: none;
+}
+
+@keyframes spin {
+    to {
+        transform: rotate(360deg);
+    }
 }
