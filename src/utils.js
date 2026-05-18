@@ -80,7 +80,9 @@ export function formatDayName(index) {
 }
 
 export function formatTime(time) {
-
+    if(!time) {
+        return "--";
+    }
     const [hour, minute] =
         time.split(":");
 

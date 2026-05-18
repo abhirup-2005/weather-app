@@ -21,6 +21,7 @@ export function renderCurrentWeather(weatherData, index) {
 
     const weather = index === 0 ? weatherData.currentConditions : weatherData.days[index];
 
+    
     elements.temperature.textContent = fahrenheitToCelsius(weather.temp);
     elements.cityName.textContent = weatherData.resolvedAddress;
     elements.feelsLike.textContent = fahrenheitToCelsius(weather.feelslike);

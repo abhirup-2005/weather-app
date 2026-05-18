@@ -3,12 +3,42 @@ import { getAQIData, getWeatherData } from "./api.js";
 import { renderCurrentWeather, renderAQI } from "./dom.js";
 import { renderForecast } from "./forecast.js";
 import { hideLoading, showLoading } from "./loading.js";
+import { getUserLocation } from "./location.js";
 
 const form = document.querySelector(".user-input-form");
 const cityInput = document.querySelector("#city");
 const weeklyContainer = document.querySelector(".weekly-container");
 
 let weatherData = null;
+
+window.addEventListener("load", async () => {
+    showLoading();
+    try {
+        const city = await getUserLocation();
+        cityInput.value = city;
+        weatherData = await getWeatherData(city);
+        const aqiData = await getAQIData(
+            weatherData.latitude,
+            weatherData.longitude
+        );
+        
+        renderAQI(aqiData);
+
+        renderDay(0);
+
+    } catch (err) {
+
+        console.error(err);
+
+        alert("Failed to get location weather");
+
+    } finally {
+
+        hideLoading();
+
+    }
+
+});
 
 form.addEventListener("submit", (e) => handleSearch(e));
 

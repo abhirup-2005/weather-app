@@ -9,7 +9,9 @@ export async function getWeatherData(cityName) {
         throw new Error(`Weather API Error: ${response.status}`);
     }
 
-    return await response.json();
+    const data = await response.json();
+    console.log(data);
+    return data;
 }
 
 export async function getAQIData(lat, lon) {
@@ -23,4 +25,27 @@ export async function getAQIData(lat, lon) {
     }
 
     return await response.json();
+}
+
+export async function getCityName(lat, lon) {
+    try {
+        const url = `https://nominatim.openstreetmap.org/reverse?format=json&lat=${lat}&lon=${lon}&accept-language=en`;
+        
+        const response = await fetch(url);
+        if (!response.ok) {
+            throw new Error("Failed to fetch city");
+        }
+        const data = await response.json();
+
+        return (
+            data.address.city ||
+            data.address.town ||
+            data.address.village ||
+            data.address.state ||
+            data.country
+        );
+
+    } catch (error) {
+        console.log(error);
+    }
 }
