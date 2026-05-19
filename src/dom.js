@@ -1,4 +1,4 @@
-import { fahrenheitToCelsius, icons, formatDayName, formatTime } from "./utils.js";
+import { fahrenheitToCelsius, icons, formatDayName, formatTime, backgroundVideos } from "./utils.js";
 
 const elements = {
     temperature: document.querySelector(".temperature"),
@@ -15,6 +15,7 @@ const elements = {
     sunset: document.querySelector(".sunset"),
     icon: document.querySelector(".weather-icon"),
     aqi: document.querySelector(".aqi"),
+    bgVideo: document.querySelector(".bg-video"),
 };
 
 export function renderCurrentWeather(weatherData, index) {
@@ -35,6 +36,7 @@ export function renderCurrentWeather(weatherData, index) {
     elements.date.textContent = formatDayName(index);
     elements.sunrise.textContent = formatTime(weather.sunrise);
     elements.sunset.textContent = formatTime(weather.sunset);
+    elements.bgVideo.src = backgroundVideos[weather.icon];
 }
 
 export function renderAQI(data) {

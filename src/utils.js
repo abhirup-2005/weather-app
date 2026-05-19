@@ -23,6 +23,67 @@ import wind from "./assets/icons/wind.svg";
 import partlyCloudyDay from "./assets/icons/partly-cloudy-day.svg";
 import partlyCloudyNight from "./assets/icons/partly-cloudy-night.svg";
 
+import thunderDayBg from "./assets/videos/thunder-day.mp4";
+import thunderNightBg from "./assets/videos/thunder-night.mp4";
+import rainBg from "./assets/videos/rain.mp4";
+import showerDayBg from "./assets/videos/shower-day.mp4";
+import showerNightBg from "./assets/videos/shower-night.mp4";
+import fogBg from "./assets/videos/fog.mp4";
+import windyBg from "./assets/videos/windy.mp4";
+import cloudyBg from "./assets/videos/cloudy.mp4";
+import partlyCloudyDayBg from "./assets/videos/partly-cloudy-day.mp4";
+import partlyCloudyNightBg from "./assets/videos/partly-cloudy-night.mp4";
+import clearNightBg from "./assets/videos/clear-night.mp4";
+import clearDayBg from "./assets/videos/clear-day.mp4";
+import snowfallNightBg from "./assets/videos/snowfall-night.mp4";
+import snowfallDayBg from "./assets/videos/snowfall-day.mp4";
+import snowBg from "./assets/videos/snow.mp4";
+
+export const backgroundVideos = {
+    "clear-day": clearDayBg,
+    "clear-night": clearNightBg,
+
+    cloudy: cloudyBg,
+
+    fog: fogBg,
+
+    hail: snowBg,
+
+    rain: rainBg,
+
+    "rain-snow": snowBg,
+
+    "rain-snow-showers-day": snowfallDayBg,
+
+    "rain-snow-showers-night": snowfallNightBg,
+
+    "showers-day": showerDayBg,
+
+    "showers-night": showerNightBg,
+
+    sleet: snowBg,
+
+    snow: snowBg,
+
+    "snow-showers-day": snowfallDayBg,
+
+    "snow-showers-night": snowfallNightBg,
+
+    thunder: thunderNightBg,
+
+    "thunder-rain": thunderDayBg,
+
+    "thunder-showers-day": thunderDayBg,
+
+    "thunder-showers-night": thunderNightBg,
+
+    wind: windyBg,
+
+    "partly-cloudy-day": partlyCloudyDayBg,
+
+    "partly-cloudy-night": partlyCloudyNightBg,
+};
+
 export const icons = {
   "clear-day": clearDay,
   "clear-night": clearNight,
