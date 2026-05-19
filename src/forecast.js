@@ -32,7 +32,7 @@ function renderHourly(weatherData, index, unit) {
     // OTHER DAYS
 
     for (let i = 0; i < 24; i++) {
-        createHourCard(todayHours[i], i);
+        createHourCard(todayHours[i], i, unit);
     }
 }
 
