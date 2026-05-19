@@ -1,15 +1,15 @@
-import { fahrenheitToCelsius, icons, formatHour, formatDayName } from "./utils.js";
+import { fahrenheitToCelsius, icons, formatHour, formatDayName, roundFahrenheit } from "./utils.js";
 
 const hourlyContainer = document.querySelector(".hourly-container");
 
 const weeklyContainer = document.querySelector(".weekly-container");
 
-export function renderForecast( weatherData, index) {
-    renderHourly( weatherData, index);
-    renderWeekly(weatherData);
+export function renderForecast( weatherData, index, unit) {
+    renderHourly( weatherData, index, unit);
+    renderWeekly(weatherData, unit);
 }
 
-function renderHourly(weatherData, index) {
+function renderHourly(weatherData, index, unit) {
     hourlyContainer.textContent = "";
 
     const todayHours = weatherData.days[index].hours;
@@ -20,11 +20,11 @@ function renderHourly(weatherData, index) {
     if (index === 0) {
         //Today Part
         for (let i = currentHour; i < 24; i++) {
-            createHourCard(todayHours[i], i);
+            createHourCard(todayHours[i], i, unit);
         }
         // Tomorrow Part
         for (let i = 0; i < currentHour; i++) {
-            createHourCard(nextDayHours[i], i);
+            createHourCard(nextDayHours[i], i, unit);
         }
         return;
     }
@@ -36,11 +36,11 @@ function renderHourly(weatherData, index) {
     }
 }
 
-function createHourCard(hour, hourIndex) {
+function createHourCard(hour, hourIndex, unit) {
     const card = document.createElement("div");
     card.classList.add("hour-card");
     card.innerHTML = `
-        <p>${fahrenheitToCelsius(hour.temp)}</p>
+        <p>${(unit == "c") ? fahrenheitToCelsius(hour.temp) : roundFahrenheit(hour.temp)}</p>
         <img src="${icons[hour.icon]}">
         <p>${formatHour(hourIndex)}</p>
     `;
@@ -48,7 +48,7 @@ function createHourCard(hour, hourIndex) {
     hourlyContainer.appendChild(card);
 }
 
-function renderWeekly(weatherData) {
+function renderWeekly(weatherData, unit) {
 
     weeklyContainer.textContent = "";
 
@@ -64,9 +64,9 @@ function renderWeekly(weatherData) {
                 <img src="${icons[day.icon]}">
                 <div class="week-right">
                     <p>
-                        ${fahrenheitToCelsius(day.tempmax)}
+                        ${(unit == "c") ? fahrenheitToCelsius(day.tempmax) : roundFahrenheit(day.tempmax)}
                         /
-                        ${fahrenheitToCelsius(day.tempmin)}
+                        ${(unit == "c") ? fahrenheitToCelsius(day.tempmin) : roundFahrenheit(day.tempmin)}
                     </p>
                 </div>
             `;
