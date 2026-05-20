@@ -1,4 +1,4 @@
-import { fahrenheitToCelsius, icons, formatDayName, formatTime, backgroundVideos, roundFahrenheit } from "./utils.js";
+import { fahrenheitToCelsius, icons, formatDayName, formatTime, backgroundVideos, roundFahrenheit, isAlpha } from "./utils.js";
 
 const elements = {
     temperature: document.querySelector(".temperature"),
@@ -22,9 +22,14 @@ export function renderCurrentWeather(weatherData, index, unit) {
 
     const weather = index === 0 ? weatherData.currentConditions : weatherData.days[index];
 
-    
     elements.temperature.textContent = (unit == "c") ? fahrenheitToCelsius(weather.temp) : roundFahrenheit(weather.temp);
-    elements.cityName.textContent = weatherData.resolvedAddress;
+
+    const locationName = weatherData.resolvedAddress;
+    const upperCasedName = isAlpha(locationName.charAt(0))
+        ? locationName.charAt(0).toUpperCase() + locationName.slice(1)
+        : locationName;
+    elements.cityName.textContent = upperCasedName;
+
     elements.feelsLike.textContent = (unit == "c") ? fahrenheitToCelsius(weather.feelslike) : roundFahrenheit(weather.feelslike);
     elements.humidity.textContent = `${weather.humidity}%`;
     elements.wind.textContent = `${weather.windspeed} km/h`;

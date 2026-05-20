@@ -153,3 +153,14 @@ export function formatTime(time) {
 
     return format(date, "p");
 }
+
+export function isAlpha(char) {
+    if (char.length !== 1) {
+        throw new Error("Only 1 character allowed");
+    }
+    const code = char.charCodeAt(0);
+    return (
+        (code >= 65 && code <= 90) ||
+        (code >= 97 && code <= 122)
+    );
+}

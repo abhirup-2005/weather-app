@@ -10,3 +10,7 @@ export function hideLoading() {
     loader.classList.add("hidden");
     weatherContainer.classList.remove("hidden");
 }
+
+export function locationDeniedHideLoad() {
+    loader.classList.add("hidden");
+}

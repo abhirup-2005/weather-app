@@ -2,7 +2,7 @@ import "./style.css";
 import { getAQIData, getWeatherData } from "./api.js";
 import { renderCurrentWeather, renderAQI, renderVideo } from "./dom.js";
 import { renderForecast } from "./forecast.js";
-import { hideLoading, showLoading } from "./loading.js";
+import { hideLoading, locationDeniedHideLoad, showLoading } from "./loading.js";
 import { getUserLocation } from "./location.js";
 
 const form = document.querySelector(".user-input-form");
@@ -20,26 +20,18 @@ window.addEventListener("load", async () => {
         const city = await getUserLocation();
         cityInput.value = city;
         weatherData = await getWeatherData(city);
-        const aqiData = await getAQIData(
-            weatherData.latitude,
-            weatherData.longitude
-        );
+        const aqiData = await getAQIData( weatherData.latitude, weatherData.longitude);
 
         renderAQI(aqiData);
-
         renderDay(0, unit);
-
         renderVideo(weatherData, 0);
+        hideLoading();
 
     } catch (err) {
 
         console.error(err);
-
         alert("Failed to get location weather");
-
-    } finally {
-
-        hideLoading();
+        locationDeniedHideLoad();
 
     }
 
@@ -49,8 +41,6 @@ form.addEventListener("submit", (e) => handleSearch(e));
 
 weeklyContainer.addEventListener("click", (e) => handleForecastClick(e));
 
-
-
 async function handleSearch(e) {
     e.preventDefault();
 
@@ -58,7 +48,6 @@ async function handleSearch(e) {
     if (!city) return;
 
     try {
-
         showLoading();
         weatherData = await getWeatherData(city);
         const aqiData = await getAQIData(weatherData.latitude, weatherData.longitude);
